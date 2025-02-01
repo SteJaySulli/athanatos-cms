@@ -4,7 +4,6 @@ namespace SteJaySulli\AthanatosCms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use SteJaySulli\AthanatosCms\I18n\TranslatableCast;
-use Illuminate\Support\Str;
 
 class AthanatosArticle extends Model
 {

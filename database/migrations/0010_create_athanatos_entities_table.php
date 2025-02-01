@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('athanatos_article_id')->constrained()->onDelete('cascade');
             $table->foreignId('parent_id')->nullable()->constrained('athanatos_entities')->onDelete('cascade');
             $table->string('type');
-            $table->json('data')->nullable();;
+            $table->json('data')->nullable();
             $table->timestamps();
         });
     }
