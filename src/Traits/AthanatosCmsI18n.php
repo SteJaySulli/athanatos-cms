@@ -3,6 +3,7 @@
 namespace SteJaySulli\AthanatosCms\Traits;
 
 use Illuminate\Support\Facades\Session;
+use SteJaySulli\AthanatosCms\Facades\AthanatosCms;
 
 trait AthanatosCmsI18n
 {
@@ -49,30 +50,22 @@ trait AthanatosCmsI18n
         return $data[$lang] ?? $data[$fallbackLang] ?? $fallback;
     }
 
-    public function getLanguageSegment(string $url): string
+    public function getSupportedLanguages(bool $includeAliases = false): array
     {
-        $languageSegmentIndex = count(
-            array_filter(
-                explode(
-                    "/",
-                    config('athanatos-cms.base_url', "/")
-                )
-            )
+        return array_reduce(
+            array_keys(
+                config('athanatos-cms.supported_languages', [])
+            ),
+            function ($carry, $lang) use ($includeAliases) {
+                $carry[] = $lang;
+                if (!$includeAliases) {
+                    foreach (config('athanatos-cms.supported_languages')[$lang] as $locale) {
+                        $carry[] = $locale;
+                    }
+                }
+                return $carry;
+            },
+            []
         );
-
-        $urlParts = array_filter(explode("/", $url));
-        return isset($urlParts[$languageSegmentIndex]) ?
-            $urlParts[$languageSegmentIndex] :
-            "";
-    }
-
-    public function languageUri(string $uri): string
-    {
-        $parts = array_merge(
-            explode("/", config('athanatos-cms.base_url', "/")),
-            [$this->getLang()],
-            explode("/", $uri)
-        );
-        return "/" . implode("/", array_filter($parts));
     }
 }
