@@ -11,9 +11,9 @@ class AthanatosController extends Controller
     public function __invoke(AthanatosArticle $article)
     {
         return response()->json([
-            "article" => $article,
-            "lang" => AthanatosCms::getLang(),
-            "session_lang" => AthanatosCms::getSessionLang(),
+            'article' => $article,
+            'lang' => AthanatosCms::getLang(),
+            'session_lang' => AthanatosCms::getSessionLang(),
         ]);
     }
 }

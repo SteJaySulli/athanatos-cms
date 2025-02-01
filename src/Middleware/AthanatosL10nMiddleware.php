@@ -15,7 +15,6 @@ class AthanatosL10nMiddleware
             explode(',', $request->header('Accept-Language')),
         );
 
-
         // Set the language of the application from the URL,
         // the Accept-Language, the cookie, or the session
         $lang = Translatable::resolveLanguage($resolvables);
@@ -29,10 +28,8 @@ class AthanatosL10nMiddleware
             AthanatosCms::setLang($lang);
             logger("Language should be set to $lang", $resolvables);
         } else {
-            logger("Language could not be set");
+            logger('Language could not be set');
         }
-
-
 
         return $next($request);
     }

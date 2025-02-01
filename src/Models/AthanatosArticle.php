@@ -3,9 +3,9 @@
 namespace SteJaySulli\AthanatosCms\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use SteJaySulli\AthanatosCms\I18n\TranslatableCast;
 use Illuminate\Support\Str;
 use SteJaySulli\AthanatosCms\Facades\AthanatosCms;
+use SteJaySulli\AthanatosCms\I18n\TranslatableCast;
 
 class AthanatosArticle extends Model
 {
@@ -48,6 +48,7 @@ class AthanatosArticle extends Model
     public static function fromUrl(string $url): self
     {
         $uri = AthanatosCms::getUriFromUrl($url);
+
         return self::where('uri', 'like', $uri)->firstOrFail();
     }
 
@@ -57,7 +58,7 @@ class AthanatosArticle extends Model
         $value = preg_replace('#^/#', '', $value);
         $value = preg_replace('#/$#', '', $value);
 
-        return $this->where('uri',  $value)
+        return $this->where('uri', $value)
             ->orWhere('ulid', $value)
             ->firstOrFail();
     }

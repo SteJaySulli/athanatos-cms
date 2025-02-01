@@ -79,13 +79,13 @@ return [
      * The base URL of the pages served by the application; the URIs of
      * articles will be appended to this URL.
      */
-    "base_url" => "/",
+    'base_url' => '/',
 
     /**
      * The base URL of the admin panel; the URIs of admin pages will be
      * appended to this URL.
      */
-    "admin_url" => "/admin",
+    'admin_url' => '/admin',
 
     /**
      * The middleware to be used for CMS Resource routes. This should include
@@ -97,14 +97,13 @@ return [
         'web',
     ],
 
-
     /**
      * Typically the CMS should be able to route any URI to the correct CMS
      * resource, even if no language is set in the URL. If you want to disable
      * this behaviour, you can set this to false; doing so will cause a 404
      * (not found) error to be returned if no language is set in the URL.
      */
-    "use_languageless_urls" => true,
+    'use_languageless_urls' => true,
 
     /**
      * By default a CMS resource will redirect to the language-specific version
@@ -113,8 +112,6 @@ return [
      *
      * This only has any effect if `use_languageless_urls` is set to true.
      */
-    "redirect_to_language" => true,
-
-
+    'redirect_to_language' => true,
 
 ];

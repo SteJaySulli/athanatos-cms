@@ -3,7 +3,6 @@
 namespace SteJaySulli\AthanatosCms\Traits;
 
 use Illuminate\Support\Facades\Session;
-use SteJaySulli\AthanatosCms\Facades\AthanatosCms;
 
 trait AthanatosCmsI18n
 {
@@ -62,11 +61,12 @@ trait AthanatosCmsI18n
             ),
             function ($carry, $lang) use ($includeAliases) {
                 $carry[] = $lang;
-                if (!$includeAliases) {
+                if (! $includeAliases) {
                     foreach (config('athanatos-cms.supported_languages')[$lang] as $locale) {
                         $carry[] = $locale;
                     }
                 }
+
                 return $carry;
             },
             []
