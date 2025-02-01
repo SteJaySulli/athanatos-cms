@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace SteJaySulli\AthanatosCms\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class AthanatosCmsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'athanatos-cms';
 
     public $description = 'My command';
 

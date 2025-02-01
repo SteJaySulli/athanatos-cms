@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace SteJaySulli\AthanatosCms;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use SteJaySulli\AthanatosCms\Commands\AthanatosCmsCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class AthanatosCmsServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('athanatos-cms')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_migration_table_name_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('0010_create_athanatos_articles_table')
+            ->hasCommand(AthanatosCmsCommand::class);
     }
 }
