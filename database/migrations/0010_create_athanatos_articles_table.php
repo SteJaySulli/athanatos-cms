@@ -11,10 +11,14 @@ return new class extends Migration
         Schema::create('athanatos_articles', function (Blueprint $table) {
             $table->id();
             $table->ulid()->unique();
-            $table->string('slug')->unique();
+            $table->string('uri')->unique();
+            $table->boolean('published')->default(false);
+            $table->boolean('routable')->default(true);
+            $table->unsignedBigInteger('version')->default(1);
 
             $table->json('title');
             $table->json('description');
+
             $table->timestamps();
         });
     }
