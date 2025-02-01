@@ -5,7 +5,6 @@ namespace SteJaySulli\AthanatosCms\I18n;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 use SteJaySulli\AthanatosCms\Facades\AthanatosCms;
-use SteJaySulli\AthanatosCms\I18n\Translatable;
 use ValueError;
 
 class TranslatableCast implements CastsAttributes
@@ -32,8 +31,9 @@ class TranslatableCast implements CastsAttributes
                 [AthanatosCms::getLang() => $value]
             );
         } else {
-            throw new ValueError("The value must be an instance of Translatable, Array or String, not " . gettype($value));
+            throw new ValueError('The value must be an instance of Translatable, Array or String, not '.gettype($value));
         }
+
         return json_encode($newValue);
     }
 }

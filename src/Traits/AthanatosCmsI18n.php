@@ -7,13 +7,14 @@ use SteJaySulli\AthanatosCms\Facades\AthanatosCms;
 
 trait AthanatosCmsI18n
 {
-    static private string $lang = "";
+    private static string $lang = '';
 
     public function getLang()
     {
         if (empty(self::$lang)) {
             self::$lang = $this->getSessionLang();
         }
+
         return self::$lang;
     }
 
@@ -22,15 +23,17 @@ trait AthanatosCmsI18n
         if (Session::has('athanatos_cms_lang')) {
             return Session::get('athanatos_cms_lang');
         }
-        return config('athanatos-cms.default_language', "");
+
+        return config('athanatos-cms.default_language', '');
     }
 
     public function setLang(?string $lang = null): self
     {
-        self::$lang = $lang ?? "";
+        self::$lang = $lang ?? '';
         if (config('athanatos-cms.set_locale', false)) {
             app()->setLocale(self::$lang);
         }
+
         return $this;
     }
 
@@ -38,14 +41,15 @@ trait AthanatosCmsI18n
     {
         $this->setLang($lang);
         Session::put('athanatos_cms_lang', $this->getLang());
+
         return $this;
     }
 
-    public function translate(array|object $data, string $fallback = ""): string
+    public function translate(array|object $data, string $fallback = ''): string
     {
-        $data = (array)$data;
+        $data = (array) $data;
         $lang = $this->getLang();
-        $fallbackLang = config('athanatos-cms.fallback_language', "");
+        $fallbackLang = config('athanatos-cms.fallback_language', '');
 
         return $data[$lang] ?? $data[$fallbackLang] ?? $fallback;
     }

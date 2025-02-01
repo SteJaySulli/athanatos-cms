@@ -2,7 +2,6 @@
 
 namespace SteJaySulli\AthanatosCms\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use SteJaySulli\AthanatosCms\Facades\AthanatosCms;
 use SteJaySulli\AthanatosCms\Models\AthanatosArticle;

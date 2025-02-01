@@ -1,7 +1,6 @@
 <?php
 
 // config for SteJaySulli/AthanatosCms
-
 use SteJaySulli\AthanatosCms\Middleware\AthanatosL10nMiddleware;
 
 return [
@@ -15,14 +14,14 @@ return [
      * means (explicitly, from the session, from the URL, etc), this will be
      * used
      */
-    "default_language" => "en",
+    'default_language' => 'en',
 
     /**
      * The fallback locale of the application. When trying to retrieve a
      * translation for a given locale, if the translation does not exist, this
      * locale will be used instead.
      */
-    "fallback_language" => "en",
+    'fallback_language' => 'en',
 
     /**
      * The supported locales of the application. If a locale is not in this
@@ -37,17 +36,17 @@ return [
      * the English language has the aliases "en_GB", "en_US", "en_CA", and "en_AU";
      * if a "en_GB" or "en_US" is used, the language will be set to "en".
      */
-    "supported_languages" => [
-        "en" => ["en_GB", "en_US", "en_CA", "en_AU"],
-        "fr" => ["fr_FR", "fr_CA"],
-        "de" => ["de_DE", "de_AT", "de_CH"],
-        "es" => ["es_ES", "es_MX", "es_AR"],
-        "it" => ["it_IT", "it_CH"],
-        "pt" => ["pt_PT", "pt_BR"],
-        "ru" => ["ru_RU"],
-        "zh" => ["zh_CN", "zh_TW"],
-        "ja" => ["ja_JP"],
-        "ko" => ["ko_KR"],
+    'supported_languages' => [
+        'en' => ['en_GB', 'en_US', 'en_CA', 'en_AU'],
+        'fr' => ['fr_FR', 'fr_CA'],
+        'de' => ['de_DE', 'de_AT', 'de_CH'],
+        'es' => ['es_ES', 'es_MX', 'es_AR'],
+        'it' => ['it_IT', 'it_CH'],
+        'pt' => ['pt_PT', 'pt_BR'],
+        'ru' => ['ru_RU'],
+        'zh' => ['zh_CN', 'zh_TW'],
+        'ja' => ['ja_JP'],
+        'ko' => ['ko_KR'],
     ],
 
     /**
@@ -55,7 +54,7 @@ return [
      * a string with two "xx" placeholders, separated by a hyphen or underscore.
      * For example, "xx-YY", "xx_yy" or "xx_YY".
      */
-    "language_format" => "xx-YY",
+    'language_format' => 'xx-YY',
 
     /**
      * By default the Athanatos CMS will not set the locale of the application.
