@@ -14,12 +14,12 @@ trait AthanatosCmsRouting
     {
         $uri = implode('/', $uris);
         $uri = preg_replace('/[?#].*$/', '', $uri);
-        $uri = preg_replace('#^' . url()->to('') . '#', '', $uri);
+        $uri = preg_replace('#^'.url()->to('').'#', '', $uri);
 
-        return '/' . implode(
+        return '/'.implode(
             '/',
             array_map(
-                fn($part) => Str::slug($part),
+                fn ($part) => Str::slug($part),
                 array_filter(
                     strpos($uri, '/') !== false ?
                         preg_split('#/#', (string) $uri) :
@@ -60,7 +60,7 @@ trait AthanatosCmsRouting
     public function normalUri(string $uri): string
     {
         return preg_replace(
-            '#^' . $this->languageUri('') . '#i',
+            '#^'.$this->languageUri('').'#i',
             '',
             $this->normaliseUri(
                 $uri
@@ -79,7 +79,7 @@ trait AthanatosCmsRouting
             $this->getLang()
         );
 
-        $uri = preg_replace('#^' . $prefix . '#', '', $uri);
+        $uri = preg_replace('#^'.$prefix.'#', '', $uri);
 
         return $uri;
     }
