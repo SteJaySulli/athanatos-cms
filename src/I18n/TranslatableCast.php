@@ -1,6 +1,6 @@
 <?php
 
-namespace SteJaySulli\AthanatosCms\Casts;
+namespace SteJaySulli\AthanatosCms\I18n;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
