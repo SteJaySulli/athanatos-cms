@@ -79,13 +79,13 @@ return [
      * The base URL of the pages served by the application; the URIs of
      * articles will be appended to this URL.
      */
-    'base_url' => '/',
+    'base_uri' => '/',
 
     /**
      * The base URL of the admin panel; the URIs of admin pages will be
      * appended to this URL.
      */
-    'admin_url' => '/admin',
+    'admin_uri' => '/admin',
 
     /**
      * The middleware to be used for CMS Resource routes. This should include

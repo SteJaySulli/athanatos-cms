@@ -14,12 +14,12 @@ trait AthanatosCmsRouting
     {
         $uri = implode('/', $uris);
         $uri = preg_replace('/[?#].*$/', '', $uri);
-        $uri = preg_replace('#^'.url()->to('').'#', '', $uri);
+        $uri = preg_replace('#^' . url()->to('') . '#', '', $uri);
 
-        return '/'.implode(
+        return '/' . implode(
             '/',
             array_map(
-                fn ($part) => Str::slug($part),
+                fn($part) => Str::slug($part),
                 array_filter(
                     strpos($uri, '/') !== false ?
                         preg_split('#/#', (string) $uri) :
@@ -36,7 +36,7 @@ trait AthanatosCmsRouting
             array_filter(
                 explode(
                     '/',
-                    config('athanatos-cms.base_url', '/')
+                    config('athanatos-cms.base_uri', '/')
                 )
             )
         );
@@ -60,7 +60,7 @@ trait AthanatosCmsRouting
     public function normalUri(string $uri): string
     {
         return preg_replace(
-            '#^'.$this->languageUri('').'#i',
+            '#^' . $this->languageUri('') . '#i',
             '',
             $this->normaliseUri(
                 $uri
@@ -75,11 +75,11 @@ trait AthanatosCmsRouting
         );
 
         $prefix = $this->normaliseUri(
-            config('athanatos-cms.base_url', '/'),
+            config('athanatos-cms.base_uri', '/'),
             $this->getLang()
         );
 
-        $uri = preg_replace('#^'.$prefix.'#', '', $uri);
+        $uri = preg_replace('#^' . $prefix . '#', '', $uri);
 
         return $uri;
     }
@@ -96,7 +96,7 @@ trait AthanatosCmsRouting
     public function routes()
     {
         return Route::middleware(config('athanatos-cms.middleware', [AthanatosL10nMiddleware::class]))
-            ->prefix(config('athanatos-cms.base_url', '/'))
+            ->prefix(config('athanatos-cms.base_uri', '/'))
             ->name('athanatos-cms.')
             ->group(function () {
                 foreach ($this->getSupportedLanguages() as $lang) {
