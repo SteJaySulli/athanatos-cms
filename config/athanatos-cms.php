@@ -54,6 +54,11 @@ return [
         "ko" => ["ko_KR"],
     ],
 
+    /**
+     * The format of the language codes used by the application. This should be
+     * a string with two "xx" placeholders, separated by a hyphen or underscore.
+     * For example, "xx-YY", "xx_yy" or "xx_YY".
+     */
     "language_format" => "xx-YY",
 
     /**
@@ -63,4 +68,11 @@ return [
      * CMS.
      */
     'set_locale' => false,
+
+    /**
+     * By default the AthanatosL10nMiddleware will persist the language in the
+     * session as well as set the current language; if you need to disable this
+     * you can do so by setting this to false:
+     */
+    'persist_language_in_session' => true,
 ];

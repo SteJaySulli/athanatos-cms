@@ -3,6 +3,7 @@
 namespace SteJaySulli\AthanatosCms\Middleware;
 
 use SteJaySulli\AthanatosCms\Facades\AthanatosCms;
+use SteJaySulli\AthanatosCms\I18n\Translatable;
 
 class AthanatosL10nMiddleware
 {
@@ -10,18 +11,20 @@ class AthanatosL10nMiddleware
     {
         // Set the language of the application from the URL,
         // the Accept-Language, the cookie, or the session
-        foreach (
+        $lang = Translatable::resolveLanguage(
             [
-                AthanatosCms::getLaunguageSegment($request->path()),
+                AthanatosCms::getLanguageSegment($request->path()),
                 $request->header('Accept-Language'),
                 $request->cookie('athanatos_cms_lang'),
                 AthanatosCms::getSessionLang(),
-            ] as $lang
-        ) {
-            if (in_array($lang, config('athanatos-cms.supported_languages', []))) {
-                AthanatosCms::setLang($lang);
-                break;
+            ]
+        );
+
+        if ($lang) {
+            if (config('athanatos-cms.persist_language_in_session', true)) {
+                AthanatosCms::setSessionLang($lang);
             }
+            AthanatosCms::setLang($lang);
         }
 
         return $next($request);

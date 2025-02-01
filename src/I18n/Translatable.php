@@ -2,12 +2,13 @@
 
 namespace SteJaySulli\AthanatosCms\I18n;
 
+use ArrayAccess;
 use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
 use SteJaySulli\AthanatosCms\Facades\AthanatosCms;
 use Stringable;
 
-class Translatable implements Stringable, Arrayable, JsonSerializable
+class Translatable implements Stringable, Arrayable, JsonSerializable, ArrayAccess
 {
     public static function make(array $data): self
     {
@@ -233,11 +234,7 @@ class Translatable implements Stringable, Arrayable, JsonSerializable
     public function translate(?array $parameters = null): string
     {
         $translation = $this->translateInto(
-            [
-                AthanatosCms::getLanguageSegment(request()->path()),
-                request()->header('Accept-Language'),
-                AthanatosCms::getSessionLang(),
-            ],
+            AthanatosCms::getLang(),
             $parameters
         );
         if (empty($translation) && !empty($fallback = config('athanatos-cms.fallback_language', ""))) {
@@ -249,7 +246,21 @@ class Translatable implements Stringable, Arrayable, JsonSerializable
         return $translation ?? "";
     }
 
+    public function setTranslationFor(string|array $lang, string $translation): self
+    {
+        $lang = self::resolveLanguage($lang);
+        if (empty($lang)) {
+            return $this;
+        }
+        $this->data[$lang] = $translation;
+        return $this;
+    }
 
+    public function setTranslation(string|array $lang, string $translation): self
+    {
+        $this->setTranslationString($lang, $translation);
+        return $this;
+    }
 
     // Standard and magic functions...
 
@@ -271,5 +282,34 @@ class Translatable implements Stringable, Arrayable, JsonSerializable
     public function jsonSerialize(): array
     {
         return $this->toArray();
+    }
+
+    public function toJson(): string
+    {
+        return json_encode($this);
+    }
+
+    public function offsetExists($offset): bool
+    {
+        $offset = self::resolveLanguage($offset);
+        return isset($this->data[$offset]);
+    }
+
+    public function offsetGet($offset): mixed
+    {
+        $offset = self::resolveLanguage($offset);
+        return $this->data[$offset] ?? null;
+    }
+
+    public function offsetSet($offset, $value): void
+    {
+        $offset = self::resolveLanguage($offset);
+        $this->data[$offset] = $value;
+    }
+
+    public function offsetUnset($offset): void
+    {
+        $offset = self::resolveLanguage($offset);
+        unset($this->data[$offset]);
     }
 }
