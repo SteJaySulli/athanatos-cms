@@ -25,6 +25,7 @@ class AthanatosArticle extends Model
     protected $casts = [
         'title' => TranslatableCast::class,
         'description' => TranslatableCast::class,
+        'content' => TranslatableCast::class,
     ];
 
     protected $auditable = [
