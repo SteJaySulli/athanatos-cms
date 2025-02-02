@@ -36,3 +36,4 @@ AthanatosCms::routes();
 ```
 
 This will set up all of the routes required for the CMS to function correctly.
+
