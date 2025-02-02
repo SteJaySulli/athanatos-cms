@@ -12,6 +12,7 @@ trait Auditable
         if (property_exists($this, 'auditable')) {
             return $this->auditable;
         }
+
         return $this->getFillable();
     }
 
@@ -23,25 +24,26 @@ trait Auditable
     public static function audit(Model $model, string $event, bool $force = true): int
     {
         if ($force) {
-            $fields = collect($model->getAuditable())->mapWithKeys(fn($field) => [$field => $model->{$field}]);
+            $fields = collect($model->getAuditable())->mapWithKeys(fn ($field) => [$field => $model->{$field}]);
         } else {
-            $fields = collect($model->getDirty())->filter(fn($value, $key) => in_array($key, $model->getAuditable()));
+            $fields = collect($model->getDirty())->filter(fn ($value, $key) => in_array($key, $model->getAuditable()));
         }
 
         $version = ($model->audits()->max('version') ?? 0) + 1;
         foreach ($fields as $field => $new) {
-            if (!in_array($field, $model->getAuditable())) {
+            if (! in_array($field, $model->getAuditable())) {
                 continue;
             }
             $model->audits()->create([
-                "field" => $field,
-                "event" => $event,
-                "old" => $model->getOriginal($field),
-                "new" => $new,
-                "comment" => null, // TODO: Implement commenting
-                "version" => $version,
+                'field' => $field,
+                'event' => $event,
+                'old' => $model->getOriginal($field),
+                'new' => $new,
+                'comment' => null, // TODO: Implement commenting
+                'version' => $version,
             ]);
         }
+
         return $version;
     }
 
@@ -55,6 +57,7 @@ trait Auditable
             $this->{$audit->field} = $audit->old;
         }
         $this->version = $version;
+
         return $this;
     }
 

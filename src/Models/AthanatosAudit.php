@@ -3,7 +3,6 @@
 namespace SteJaySulli\AthanatosCms\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use SteJaySulli\AthanatosCms\I18n\TranslatableCast;
 
 class AthanatosAudit extends Model
 {

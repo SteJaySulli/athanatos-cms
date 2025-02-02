@@ -11,8 +11,8 @@ use SteJaySulli\AthanatosCms\Traits\Auditable;
 
 class AthanatosArticle extends Model
 {
-    use SoftDeletes;
     use Auditable;
+    use SoftDeletes;
 
     protected $fillable = [
         'ulid',

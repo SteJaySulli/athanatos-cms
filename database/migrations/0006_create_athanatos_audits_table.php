@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->morphs('auditable');
             $table->string('field')->index();
-            $table->string('event')->default("change")->index();
+            $table->string('event')->default('change')->index();
             $table->json('old')->nullable();
             $table->json('new')->nullable();
             $table->unsignedBigInteger('version')->default(1);
