@@ -11,7 +11,7 @@ class TranslatableCast implements CastsAttributes
 {
     public function get(Model $model, string $key, mixed $value, array $attributes): Translatable
     {
-        return Translatable::make(json_decode($value, true));
+        return Translatable::make(is_null($value) ? [] : json_decode($value, true));
     }
 
     /**
@@ -31,7 +31,7 @@ class TranslatableCast implements CastsAttributes
                 [AthanatosCms::getLang() => $value]
             );
         } else {
-            throw new ValueError('The value must be an instance of Translatable, Array or String, not '.gettype($value));
+            throw new ValueError('The value must be an instance of Translatable, Array or String, not ' . gettype($value));
         }
 
         return json_encode($newValue);

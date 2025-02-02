@@ -16,9 +16,11 @@ return new class extends Migration
             $table->boolean('routable')->default(true);
             $table->unsignedBigInteger('version')->default(1);
 
-            $table->json('title');
-            $table->json('description');
+            $table->json('title')->nullable();
+            $table->json('description')->nullable();
+            $table->json('content')->nullable();
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

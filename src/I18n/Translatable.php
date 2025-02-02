@@ -10,9 +10,9 @@ use Stringable;
 
 class Translatable implements Arrayable, ArrayAccess, JsonSerializable, Stringable
 {
-    public static function make(array $data): self
+    public static function make(mixed $data): self
     {
-        return new self($data);
+        return new self((array)$data);
     }
 
     /**
@@ -99,7 +99,7 @@ class Translatable implements Arrayable, ArrayAccess, JsonSerializable, Stringab
         $supportedLanguages = collect(config('athanatos-cms.supported_languages', []))
             ->mapWithKeys(function ($aliases, $code) use ($format) {
                 return [self::format($code, $format) => array_map(
-                    fn ($alias) => self::format($alias, $format),
+                    fn($alias) => self::format($alias, $format),
                     $aliases
                 )];
             });
@@ -186,7 +186,7 @@ class Translatable implements Arrayable, ArrayAccess, JsonSerializable, Stringab
             $string,
             collect($parameters)
                 ->mapWithKeys(
-                    fn ($value, $key) => ["{{$key}}" => $value]
+                    fn($value, $key) => ["{{$key}}" => $value]
                 )
                 ->all()
         );

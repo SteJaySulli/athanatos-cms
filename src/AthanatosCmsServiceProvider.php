@@ -19,7 +19,11 @@ class AthanatosCmsServiceProvider extends PackageServiceProvider
             ->name('athanatos-cms')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('0010_create_athanatos_articles_table')
+            // ->hasMigration('0010_create_athanatos_articles_table')
+            ->hasMigrations([
+                '0006_create_athanatos_audits_table',
+                '0010_create_athanatos_articles_table',
+            ])
             ->hasCommand(AthanatosCmsCommand::class);
     }
 }
