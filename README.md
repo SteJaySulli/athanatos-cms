@@ -1,5 +1,10 @@
 # Laravel-based CMS
 
+> [!WARNING]
+> This project is under active development and is not yet ready for release. Feel free to browse the source,
+> but note that this readme is still a stock document from the [Spatie Package Skeleton](https://github.com/spatie/package-skeleton-laravel)
+> and the instructions herein will not work, nor is there a version of this package yet set up on packagist.
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/stejaysulli/athanatos-cms.svg?style=flat-square)](https://packagist.org/packages/stejaysulli/athanatos-cms)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/stejaysulli/athanatos-cms/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/stejaysulli/athanatos-cms/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/stejaysulli/athanatos-cms/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/stejaysulli/athanatos-cms/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
